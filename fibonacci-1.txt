@@ -1,0 +1,76 @@
+#include <iostream>
+using namespace std;
+
+int fibonacci(int n) {
+    if (n <= 1) return n;
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+int stepCountRecursion(int n) {
+    if (n <= 1) return 1;
+    return stepCountRecursion(n - 1) + stepCountRecursion(n - 2);
+}
+
+void printFibonacciSeriesRecursion(int n) {
+    for (int i = 0; i <= n; i++) {
+        cout << fibonacci(i) << " ";
+    }
+    cout << endl;
+}
+
+int fibonacciIteration(int n) {
+    int fib[n + 1];
+    fib[0] = 0;
+    if (n > 0) fib[1] = 1;
+    for (int i = 2; i <= n; i++) {
+        fib[i] = fib[i - 1] + fib[i - 2];
+    }
+    return fib[n];
+}
+
+int stepCountIteration(int n) {
+    int count = 0;
+    int fib[n + 1];
+    fib[0] = 0;
+    if (n > 0) fib[1] = 1;
+    for (int i = 2; i <= n; i++) {
+        fib[i] = fib[i - 1] + fib[i - 2];
+        count++;
+    }
+    return count;
+}
+
+void printFibonacciSeriesIteration(int n) {
+    int fib[n + 1];
+    fib[0] = 0;
+    if (n > 0) fib[1] = 1;
+    for (int i = 2; i <= n; i++) {
+        fib[i] = fib[i - 1] + fib[i - 2];
+    }
+    for (int i = 0; i <= n; i++) {
+        cout << fib[i] << " ";
+    }
+    cout << endl;
+}
+
+int main() {
+    int n;
+    cout << "Enter the number of Fibonacci numbers to calculate: ";
+    cin >> n;
+
+    int stepsRecursion = stepCountRecursion(n);
+    cout << "Fibonacci Recursion: " << fibonacci(n) << endl;
+    cout << "Fibonacci Recursion Steps: " << stepsRecursion << endl;
+
+    cout << "Fibonacci Series (Recursion): " << endl;
+    printFibonacciSeriesRecursion(n);
+
+    int stepsIteration = stepCountIteration(n);
+    cout << "Fibonacci Iteration: " << fibonacciIteration(n) << endl;
+    cout << "Fibonacci Iteration Steps: " << stepsIteration << endl;
+
+    cout << "Fibonacci Series (Iteration): " << endl;
+    printFibonacciSeriesIteration(n);
+
+    return 0;
+}
